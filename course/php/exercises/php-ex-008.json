@@ -1,0 +1,1 @@
+{"id":"php-ex-008","lessonId":"php-spc-011","title":"قرارداد API موبایل","description":"یک API contract نسخه v1 برای Login، Refresh، Profile و Products طراحی کنید.","type":"BUILD_FEATURE","difficulty":"EXPERT","hints":["Error code پایدار تعریف کنید.","Pagination و token expiry را مشخص کنید."],"explanation":"کلاینت موبایل به قرارداد پایدار و قابل نسخه‌بندی نیاز دارد."}

@@ -28,12 +28,19 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build debug APK
-        run: gradle :app:assembleDebug --stacktrace
+      - name: Build debug and unsigned release APKs
+        run: gradle :app:assembleDebug :app:assembleRelease --stacktrace
 
       - name: Upload debug APK
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: as-academy-php-debug
+          name: as-academy-php-debug-v0.4.0
           path: app/build/outputs/apk/debug/*.apk
+
+      - name: Upload unsigned release APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: as-academy-php-release-unsigned-v0.4.0
+          path: app/build/outputs/apk/release/*.apk

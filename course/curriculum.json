@@ -1,0 +1,12 @@
+{
+  "courseId": "php",
+  "curriculumVersion": "1.1.0",
+  "levels": [
+    {"id":"fundamentals","order":1,"titleFa":"مبانی","file":"levels/01-fundamentals.md","lessons":9,"project":"محاسبه‌گر خرید"},
+    {"id":"beginner","order":2,"titleFa":"مقدماتی","file":"levels/02-beginner-database.md","lessons":9,"project":"مدیریت مخاطبین"},
+    {"id":"advanced","order":3,"titleFa":"پیشرفته","file":"levels/03-advanced.md","lessons":11,"project":"REST API فروشگاه"},
+    {"id":"professional","order":4,"titleFa":"تخصصی","file":"levels/04-professional.md","lessons":13,"project":"سامانه تجاری Laravel"}
+  ],
+  "totalLessons": 42,
+  "assessment": {"quizPassPercent":70,"requiredExercisePercent":80,"finalProjectRequired":true}
+}

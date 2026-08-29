@@ -1,0 +1,21 @@
+{
+  "courseId": "php",
+  "titleFa": "PHP از صفر تا تخصصی",
+  "titleEn": "PHP: Zero to Professional",
+  "version": "1.0.0",
+  "contentSchemaVersion": 1,
+  "minimumCoreVersion": "0.1.0",
+  "rtl": true,
+  "capabilities": {
+    "codeRunner": true,
+    "terminalExamples": true,
+    "diagrams": true,
+    "quizzes": true,
+    "exercises": true,
+    "projects": true,
+    "glossary": true
+  },
+  "language": "fa",
+  "technology": "PHP",
+  "levels": ["fundamentals", "beginner", "advanced", "professional"]
+}

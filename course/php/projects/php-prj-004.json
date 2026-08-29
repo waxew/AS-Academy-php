@@ -1,0 +1,1 @@
+{"id":"php-prj-004","title":"سامانه تجاری Laravel","summary":"Capstone دوره با الزامات Production.","difficulty":"EXPERT","steps":["Auth و RBAC","Catalog و Inventory","Cart و Order","Payment abstraction","Invoice و Notification","REST API و Admin","Tests","Redis و Queue","Docker","CI/CD","Backup/Restore","Deployment و Rollback"]}

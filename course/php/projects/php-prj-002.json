@@ -1,0 +1,1 @@
+{"id":"php-prj-002","title":"مدیریت مخاطبین","summary":"اولین برنامه وب دیتابیسی کامل با PHP و PDO.","difficulty":"INTERMEDIATE","steps":["طراحی users و contacts","Register/Login امن","CRUD مخاطبین","Search و Pagination","CSRF و validation","مدیریت خطا"]}

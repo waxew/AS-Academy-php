@@ -1,0 +1,1 @@
+{"id":"php-prj-003","title":"REST API فروشگاه","summary":"API لایه‌بندی‌شده برای user، product و order.","difficulty":"ADVANCED","steps":["طراحی resources و endpoints","Service/Repository architecture","Authentication و RBAC","Validation و error contract","Pagination/filter/sort","Security review","Test plan"]}

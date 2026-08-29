@@ -1,49 +1,43 @@
 # AS Academy PHP
 
-مرجع فارسی پروژه‌محور **PHP از صفر تا تخصصی** و Course Package رسمی PHP برای معماری AS Academy.
+اپ اندرویدی و Course Package فارسی برای **یادگیری PHP از صفر تا سطح تخصصی**.
 
-## وضعیت
-**v1.0.0 — بسته پایه کامل دوره**
+## هدف
+این پروژه یک کتاب Markdown صرف نیست. کاربر باید داخل اپ درس‌ها را مرحله‌به‌مرحله بخواند، مثال کد ببیند، تمرین و Quiz انجام دهد، پروژه بسازد و Progress خود را نگه دارد.
 
-## معماری AS Academy
-این مخزن فقط محتوای اختصاصی PHP را نگه می‌دارد. زیرساخت‌های مشترک شامل Navigation، Design System، Progress، Quiz، Exercise، Search، Bookmark، Settings، Drawer/Profile، Database و Content Engine در مخزن `AS-Academy-Core` نگهداری می‌شوند.
+## معماری
+زیرساخت عمومی از `AS-Academy-Core` به‌صورت Git submodule استفاده می‌شود. `MainActivity` فقط `AcademyCourseApp(courseId = "php")` را اجرا می‌کند؛ Navigation، UI، Progress، Search، Bookmark، Quiz/Exercise Engine، Database و Content Loader در Core باقی می‌مانند.
 
-قرارداد دوره در `course/manifest.json` قرار دارد و با `contentSchemaVersion: 1` و حداقل Core نسخه `0.1.0` تعریف شده است.
+## مسیر آموزشی فعلی
+- مبانی: PHP، نصب، Type، Operator، Condition، Loop، Array، Function
+- مقدماتی: HTTP، Form، Session، Upload، SQL، PDO، CRUD
+- پیشرفته: OOP، Composer/PSR، Exception، MVC، SOLID، Security، REST API
+- تخصصی: Laravel، Eloquent، Validation/Policy، Testing، Redis، Queue، Performance، Docker، CI/CD و Deployment
 
-## مسیر آموزشی
-1. مبانی — نصب، Syntax، Type، Operator، Condition، Loop، Array، Function
-2. مقدماتی — HTTP/Form، Session/Cookie، File/Upload، SQL/MySQL، PDO، CRUD
-3. پیشرفته — OOP، Composer/PSR، Exception، MVC، SOLID، Security، REST API
-4. تخصصی — Laravel، Testing، Performance، Redis، Queue، Docker، CI/CD، Deployment و Backend موبایل
+## محتوای قابل اجرای اپ
+محتوا در `course/php` مطابق قرارداد Core قرار دارد:
+- `manifest.json`
+- `levels.json`
+- `chapters.json`
+- `lessons/*.json`
+- `exercises/*.json`
+- `quizzes/*.json`
+- `projects/*.json`
+- `glossary/*.json`
 
-## ساختار واقعی مخزن
-```text
-AS-Academy-php/
-├── course/
-│   ├── manifest.json
-│   ├── CONTENT.md
-│   ├── EXERCISES-QUIZZES.md
-│   ├── PROJECTS.md
-│   └── GLOSSARY.md
-├── examples/
-│   ├── 01-basics/index.php
-│   ├── 02-database/pdo.php
-│   └── 03-api/index.php
-├── docs/
-│   ├── COURSE-ROADMAP.md
-│   └── CORE-INTEGRATION.md
-├── CHANGELOG.md
-└── README.md
+## ساخت Android
+```bash
+git clone --recurse-submodules https://github.com/waxew/AS-Academy-php.git
+cd AS-Academy-php
+# سپس پروژه را با Android Studio/Gradle باز و app را build کنید.
+```
+اگر قبلاً clone شده:
+```bash
+git submodule update --init --recursive
 ```
 
-## پروژه‌های عملی
-مسیر پروژه‌ها از Calculator و Contact Form شروع می‌شود و به Todo، Phone Book، Authentication، User Manager، Blog، File Manager، Invoice، REST API، Appointment، E-commerce، Mobile Backend، Laravel Production و Master Project می‌رسد.
+## Package
+`com.asdevelopers.academy.php`
 
-## استاندارد آموزش
-هر بخش متناسب با موضوع شامل توضیح مفهومی، Syntax، مثال، توضیح کد، نکات امنیتی، خطاهای رایج، تمرین، Quiz و پروژه است. مثال‌های سورس برای هدف آموزشی دارای کامنت توضیحی هستند.
-
-## امنیت
-Credential، password، token، API key و Secret واقعی نباید در این مخزن ذخیره شود. مثال‌های اتصال از Environment Variable و placeholder استفاده می‌کنند.
-
-## هدف نهایی
-دانشجو پس از تکمیل مسیر باید بتواند Backend واقعی PHP/Laravel را طراحی، پیاده‌سازی، تست، امن‌سازی، مستندسازی و Deploy کند و API مناسب وب و اپلیکیشن موبایل ارائه دهد.
+## اصل توسعه
+هر قابلیت مشترک بین دوره‌ها باید در `AS-Academy-Core` پیاده‌سازی شود. این مخزن فقط منطق و محتوای اختصاصی PHP را نگه می‌دارد.

@@ -1,76 +1,49 @@
 # AS Academy PHP
 
-مرجع جامع آموزش PHP از صفر تا سطح تخصصی
+مرجع فارسی پروژه‌محور **PHP از صفر تا تخصصی** و Course Package رسمی PHP برای معماری AS Academy.
+
+## وضعیت
+**v1.0.0 — بسته پایه کامل دوره**
+
+## معماری AS Academy
+این مخزن فقط محتوای اختصاصی PHP را نگه می‌دارد. زیرساخت‌های مشترک شامل Navigation، Design System، Progress، Quiz، Exercise، Search، Bookmark، Settings، Drawer/Profile، Database و Content Engine در مخزن `AS-Academy-Core` نگهداری می‌شوند.
+
+قرارداد دوره در `course/manifest.json` قرار دارد و با `contentSchemaVersion: 1` و حداقل Core نسخه `0.1.0` تعریف شده است.
 
 ## مسیر آموزشی
+1. مبانی — نصب، Syntax، Type، Operator، Condition، Loop، Array، Function
+2. مقدماتی — HTTP/Form، Session/Cookie، File/Upload، SQL/MySQL، PDO، CRUD
+3. پیشرفته — OOP، Composer/PSR، Exception، MVC، SOLID، Security، REST API
+4. تخصصی — Laravel، Testing، Performance، Redis، Queue، Docker، CI/CD، Deployment و Backend موبایل
 
-این دوره به چهار سطح اصلی تقسیم می‌شود:
-
-1. مبانی
-2. مقدماتی
-3. پیشرفته
-4. تخصصی
-
-## سرفصل‌های اصلی
-
-- معرفی PHP و راه‌اندازی محیط توسعه
-- Syntax، متغیرها، انواع داده و عملگرها
-- شرط‌ها، حلقه‌ها، آرایه‌ها و توابع
-- فرم‌ها، GET/POST، Session و Cookie
-- فایل‌ها و آپلود امن
-- MySQL، SQL، PDO و CRUD
-- برنامه‌نویسی شی‌گرا (OOP)
-- Composer، Namespace، Autoloading و استانداردهای PSR
-- امنیت PHP و توسعه امن
-- MVC و معماری نرم‌افزار
-- REST API و Backend اپلیکیشن‌های موبایل
-- Authentication، Authorization، Role و Permission
-- Testing و Debugging
-- Performance، Cache، Redis و Queue
-- Laravel
-- Docker، Git/GitHub و CI/CD
-- Deployment روی سرور Production
-- پروژه‌های عملی از ساده تا تجاری
-
-## ساختار پیشنهادی مخزن
-
+## ساختار واقعی مخزن
 ```text
 AS-Academy-php/
-├── 01-fundamentals/
-├── 02-beginner/
-├── 03-database/
-├── 04-oop/
-├── 05-advanced/
-├── 06-security/
-├── 07-architecture/
-├── 08-rest-api/
-├── 09-laravel/
-├── 10-testing/
-├── 11-devops-deployment/
+├── course/
+│   ├── manifest.json
+│   ├── CONTENT.md
+│   ├── EXERCISES-QUIZZES.md
+│   ├── PROJECTS.md
+│   └── GLOSSARY.md
 ├── examples/
-├── exercises/
-├── projects/
-└── docs/
+│   ├── 01-basics/index.php
+│   ├── 02-database/pdo.php
+│   └── 03-api/index.php
+├── docs/
+│   ├── COURSE-ROADMAP.md
+│   └── CORE-INTEGRATION.md
+├── CHANGELOG.md
+└── README.md
 ```
 
-## روش آموزش هر فصل
+## پروژه‌های عملی
+مسیر پروژه‌ها از Calculator و Contact Form شروع می‌شود و به Todo، Phone Book، Authentication، User Manager، Blog، File Manager، Invoice، REST API، Appointment، E-commerce، Mobile Backend، Laravel Production و Master Project می‌رسد.
 
-هر مبحث تا حد امکان شامل موارد زیر خواهد بود:
+## استاندارد آموزش
+هر بخش متناسب با موضوع شامل توضیح مفهومی، Syntax، مثال، توضیح کد، نکات امنیتی، خطاهای رایج، تمرین، Quiz و پروژه است. مثال‌های سورس برای هدف آموزشی دارای کامنت توضیحی هستند.
 
-- توضیح مفهومی
-- Syntax و دستورات
-- مثال عملی
-- تشریح کد
-- نکات مهم
-- خطاهای رایج
-- تمرین
-- پاسخ یا راهنمای تمرین
-- مینی‌پروژه
-
-## پروژه‌های دوره
-
-از پروژه‌های ساده مانند ماشین‌حساب، فرم تماس و Todo List شروع می‌کنیم و در ادامه به سیستم کاربران، وبلاگ، پنل مدیریت، مدیریت فایل، فروشگاه اینترنتی، سیستم حسابداری، سیستم نوبت‌دهی و Backend اپلیکیشن موبایل می‌رسیم.
+## امنیت
+Credential، password، token، API key و Secret واقعی نباید در این مخزن ذخیره شود. مثال‌های اتصال از Environment Variable و placeholder استفاده می‌کنند.
 
 ## هدف نهایی
-
-هدف این مخزن ساخت یک مسیر آموزشی پروژه‌محور است که دانشجو را از نداشتن تجربه قبلی در PHP تا توانایی طراحی، پیاده‌سازی، تست، امن‌سازی و استقرار یک Backend واقعی هدایت کند.
+دانشجو پس از تکمیل مسیر باید بتواند Backend واقعی PHP/Laravel را طراحی، پیاده‌سازی، تست، امن‌سازی، مستندسازی و Deploy کند و API مناسب وب و اپلیکیشن موبایل ارائه دهد.

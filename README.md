@@ -15,7 +15,10 @@
 - تخصصی: Laravel، Eloquent، Validation/Policy، Testing، Redis، Queue، Performance، Docker، CI/CD و Deployment
 
 ## محتوای قابل اجرای اپ
-محتوا در `course/php` مطابق قرارداد Core قرار دارد:
+Course Package در مسیر استاندارد Android Assets قرار دارد:
+`app/src/main/assets/course/php`
+
+ساختار داخلی:
 - `manifest.json`
 - `levels.json`
 - `chapters.json`
@@ -25,16 +28,18 @@
 - `projects/*.json`
 - `glossary/*.json`
 
+Core در زمان اجرا این فایل‌ها را با مسیر منطقی `course/php/...` بارگذاری می‌کند.
+
 ## ساخت Android
 ```bash
 git clone --recurse-submodules https://github.com/waxew/AS-Academy-php.git
 cd AS-Academy-php
-# سپس پروژه را با Android Studio/Gradle باز و app را build کنید.
 ```
 اگر قبلاً clone شده:
 ```bash
 git submodule update --init --recursive
 ```
+سپس `:app:assembleDebug` یا Build از Android Studio اجرا شود.
 
 ## Package
 `com.asdevelopers.academy.php`

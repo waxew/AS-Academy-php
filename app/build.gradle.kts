@@ -3,14 +3,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-// فقط Course Package اختصاصی PHP را به Assets اپ تبدیل می‌کنیم.
-// استفاده از ریشه کل Repository به‌عنوان Assets باعث می‌شد Gradle خروجی‌های تولیدی Core را
-// ورودی mergeDebugAssets تشخیص دهد و در Gradle 9 خطای implicit dependency ایجاد شود.
-val prepareCourseAssets by tasks.registering(Sync::class) {
-    from(rootProject.file("course/php"))
-    into(layout.buildDirectory.dir("generated/courseAssets/course/php"))
-}
-
 android {
     namespace = "com.asdevelopers.academy.php"
     compileSdk = 37
@@ -30,10 +22,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // Loader مرکزی مسیر course/php را انتظار دارد؛ این Provider وابستگی Task را نیز به Gradle اعلام می‌کند.
-    sourceSets.getByName("main").assets.srcDir(
-        prepareCourseAssets.map { it.destinationDir.parentFile.parentFile }
-    )
+    // Course Package در مسیر استاندارد Android Assets قرار دارد:
+    // app/src/main/assets/course/php
+    // بنابراین Loader مرکزی Core بدون تنظیم سفارشی و بدون dependency مبهم Gradle آن را می‌خواند.
 }
 
 dependencies {

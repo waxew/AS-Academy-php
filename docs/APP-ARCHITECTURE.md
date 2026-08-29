@@ -10,14 +10,18 @@ Core مسئول App Shell، Navigation، Course Loader، Lesson Renderer، Progr
 این ریپو فقط PHP-specific configuration/content را نگه می‌دارد.
 
 ## Course Package اجرایی
-`course/php/manifest.json`
-`course/php/levels.json`
-`course/php/chapters.json`
-`course/php/lessons/*.json`
-`course/php/exercises/*.json`
-`course/php/quizzes/*.json`
-`course/php/projects/*.json`
-`course/php/glossary/*.json`
+محتوا در مسیر استاندارد Android Assets نگه‌داری می‌شود:
+
+`app/src/main/assets/course/php/manifest.json`
+`app/src/main/assets/course/php/levels.json`
+`app/src/main/assets/course/php/chapters.json`
+`app/src/main/assets/course/php/lessons/*.json`
+`app/src/main/assets/course/php/exercises/*.json`
+`app/src/main/assets/course/php/quizzes/*.json`
+`app/src/main/assets/course/php/projects/*.json`
+`app/src/main/assets/course/php/glossary/*.json`
+
+در زمان اجرا Core همچنان آن را با مسیر منطقی `course/php/...` می‌خواند.
 
 ## جریان یادگیری
 Home -> Level -> Chapter -> Lesson -> Exercise/Quiz -> Complete -> Progress -> Next Lesson

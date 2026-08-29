@@ -1,0 +1,1 @@
+{"id":"php-ex-007","lessonId":"php-spc-009","title":"Policy محصول","description":"قانون دسترسی update/delete محصول را با Policy پیاده‌سازی و با Feature Test بررسی کنید.","type":"BUILD_FEATURE","difficulty":"HARD","hints":["Authorization را داخل View پنهان نکنید.","حالت مجاز و غیرمجاز هر دو تست شوند."],"explanation":"تمرین، authorization واقعی Laravel را به testing متصل می‌کند."}

@@ -1,0 +1,1 @@
+{"id":"php-prj-005","title":"سیستم فاکتور و حسابداری کوچک","summary":"تمرین PHP، SQL، Transaction و گزارش‌گیری در یک دامنه واقعی.","difficulty":"ADVANCED","steps":["Customer/Product schema","Invoice و Invoice Items","Transaction ثبت فاکتور","محاسبه مبلغ و تخفیف","Search و Pagination","گزارش فروش","PDF/export abstraction","Authorization و Audit"]}

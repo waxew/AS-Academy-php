@@ -1,0 +1,1 @@
+{"id":"php-prj-006","title":"سامانه رزرو و نوبت‌دهی","summary":"Backend رزرو با جلوگیری از تداخل زمان و اعلان.","difficulty":"ADVANCED","steps":["User/Service/Slot schema","Availability query","Atomic booking","Cancellation rules","Notification queue","Scheduler reminder","REST API","Tests"]}

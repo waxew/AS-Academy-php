@@ -1,0 +1,1 @@
+{"id":"php-ex-011","lessonId":"php-beg-010","title":"گزارش فروش SQL","description":"با JOIN/GROUP BY گزارش تعداد سفارش و مجموع خرید هر مشتری را بسازید.","type":"WRITE_CODE","difficulty":"MEDIUM","hints":["LEFT JOIN مشتری بدون سفارش را هم نگه می‌دارد.","SUM و COUNT را با GROUP BY ترکیب کنید."],"explanation":"تمرین گزارش‌گیری واقعی SQL است."}

@@ -1,0 +1,1 @@
+{"id":"php-prj-014","title":"سیستم مالی و حسابداری کوچک","description":"مشتری، فاکتور، دریافت/پرداخت، بدهکار/بستانکار و گزارش سود و زیان را با قواعد مالی قابل تست پیاده‌سازی کنید.","difficulty":"EXPERT","lessonIds":["php-beg-009","php-adv-004","php-spc-004"],"requirements":["immutable transaction history","invoice totals","atomic posting","reports","tests"]}

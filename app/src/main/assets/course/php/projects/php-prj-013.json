@@ -1,0 +1,1 @@
+{"id":"php-prj-013","title":"وبلاگ و CMS حرفه‌ای","description":"CMS شامل نوشته، دسته، برچسب، رسانه، پیش‌نویس، انتشار زمان‌بندی‌شده، نقش نویسنده و مدیریت محتوا بسازید.","difficulty":"HARD","lessonIds":["php-adv-004","php-spc-002","php-spc-012"],"requirements":["editorial workflow","RBAC","media storage","scheduled publishing","search"]}

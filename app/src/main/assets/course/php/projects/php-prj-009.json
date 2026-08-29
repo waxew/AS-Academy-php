@@ -1,0 +1,1 @@
+{"id":"php-prj-009","title":"مدیریت موجودی و انبار","description":"سیستم محصول، ورود/خروج کالا، موجودی، هشدار کمبود و گزارش گردش کالا را با transaction بسازید.","difficulty":"HARD","lessonIds":["php-beg-009","php-adv-004","php-spc-004"],"requirements":["transactional stock changes","audit trail","search/filter/pagination","tests","report"]}

@@ -1,0 +1,1 @@
+{"id":"php-prj-011","title":"API اشتراک و پرداخت","description":"سیستم Plan، Subscription، Payment و Webhook با idempotency، تمدید و لغو اشتراک بسازید.","difficulty":"EXPERT","lessonIds":["php-adv-007","php-spc-008","php-spc-012"],"requirements":["signed webhook","idempotency","scheduler","retry policy","payment audit"]}

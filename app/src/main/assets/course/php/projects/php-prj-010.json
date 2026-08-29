@@ -1,0 +1,1 @@
+{"id":"php-prj-010","title":"سامانه تیکت پشتیبانی","description":"Backend کامل Ticket شامل کاربر، اپراتور، وضعیت، اولویت، پیام، فایل پیوست و اعلان را طراحی کنید.","difficulty":"HARD","lessonIds":["php-adv-007","php-spc-010","php-spc-009"],"requirements":["REST API","RBAC","secure attachment","notification","audit log"]}

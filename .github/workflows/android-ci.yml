@@ -31,6 +31,16 @@ jobs:
       - name: Build debug and unsigned release APKs
         run: gradle :app:assembleDebug :app:assembleRelease --stacktrace
 
+      - name: Verify APK integrity and signatures
+        run: bash tools/verify_apks.sh
+
+      - name: Upload APK checksums
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: as-academy-php-checksums-v0.4.0
+          path: app/build/outputs/apk/checksums/SHA256SUMS.txt
+
       - name: Upload debug APK
         if: success()
         uses: actions/upload-artifact@v4

@@ -18,17 +18,22 @@ val hasReleaseSigning = listOf(
 // snapshot so every already-shipped lesson remains available until its file has moved.
 val legacyPhpCourseDir = layout.projectDirectory.dir("src/main/assets/course/php")
 val mainCoursePhpDir = rootProject.layout.projectDirectory.dir("academy-main-course/courses/php/course")
-val generatedCourseAssetsDir = layout.buildDirectory.dir("generated/mainCourseAssets")
 
-val syncPhpCourseFromMainCourse by tasks.registering(Sync::class) {
+// Android SourceSet APIs reject Provider<Directory>. Resolve this to a concrete File
+// at configuration time; task ordering is still explicit through preBuild.dependsOn.
+val generatedCourseAssetsDir = layout.buildDirectory.dir("generated/mainCourseAssets").get().asFile
+val generatedPhpCourseDir = generatedCourseAssetsDir.resolve("course/php")
+
+val syncPhpCourseFromMainCourse = tasks.register<Sync>("syncPhpCourseFromMainCourse") {
     group = "academy content"
     description = "Builds the runtime PHP Course Package from AS-Academy-MainCourse."
 
-    into(generatedCourseAssetsDir.map { it.dir("course/php") })
+    into(generatedPhpCourseDir)
 
-    // Compatibility snapshot first; MainCourse always wins on duplicate paths.
+    // Compatibility snapshot first; MainCourse is copied second and is authoritative.
     from(legacyPhpCourseDir)
     from(mainCoursePhpDir)
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
     doFirst {
         require(mainCoursePhpDir.asFile.exists()) {
@@ -75,7 +80,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // Core still reads the stable runtime path course/php/...; only its source changed.
+    // Core keeps reading course/php/...; only the source is now generated from MainCourse.
     sourceSets.getByName("main").assets.srcDir(generatedCourseAssetsDir)
 }
 

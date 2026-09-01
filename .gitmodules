@@ -1,3 +1,13 @@
 [submodule "academy-core"]
 	path = academy-core
 	url = https://github.com/waxew/AS-Academy-Core.git
+
+# MainUi و MainCourse اجزای مرکزی معماری جدید هستند.
+# Gitlinkهای اجرایی آن‌ها در مرحله migration نهایی به این مسیرها pin می‌شوند.
+[submodule "academy-main-ui"]
+	path = academy-main-ui
+	url = https://github.com/waxew/AS-Academy-MainUi.git
+
+[submodule "academy-main-course"]
+	path = academy-main-course
+	url = https://github.com/waxew/AS-Academy-MainCourse.git

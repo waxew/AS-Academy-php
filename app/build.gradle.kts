@@ -14,6 +14,29 @@ val hasReleaseSigning = listOf(
     signingKeyPassword,
 ).all { !it.isNullOrBlank() }
 
+// MainCourse is the source of truth. During migration we overlay it on the legacy
+// snapshot so every already-shipped lesson remains available until its file has moved.
+val legacyPhpCourseDir = layout.projectDirectory.dir("src/main/assets/course/php")
+val mainCoursePhpDir = rootProject.layout.projectDirectory.dir("academy-main-course/courses/php/course")
+val generatedCourseAssetsDir = layout.buildDirectory.dir("generated/mainCourseAssets")
+
+val syncPhpCourseFromMainCourse by tasks.registering(Sync::class) {
+    group = "academy content"
+    description = "Builds the runtime PHP Course Package from AS-Academy-MainCourse."
+
+    into(generatedCourseAssetsDir.map { it.dir("course/php") })
+
+    // Compatibility snapshot first; MainCourse always wins on duplicate paths.
+    from(legacyPhpCourseDir)
+    from(mainCoursePhpDir)
+
+    doFirst {
+        require(mainCoursePhpDir.asFile.exists()) {
+            "AS-Academy-MainCourse submodule is missing. Run git submodule update --init --recursive."
+        }
+    }
+}
+
 android {
     namespace = "com.asdevelopers.academy.php"
     compileSdk = 37
@@ -52,14 +75,18 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // Course Package در مسیر استاندارد Android Assets قرار دارد:
-    // app/src/main/assets/course/php
-    // بنابراین Loader مرکزی Core بدون تنظیم سفارشی و بدون dependency مبهم Gradle آن را می‌خواند.
+    // Core still reads the stable runtime path course/php/...; only its source changed.
+    sourceSets.getByName("main").assets.srcDir(generatedCourseAssetsDir)
+}
+
+tasks.named("preBuild").configure {
+    dependsOn(syncPhpCourseFromMainCourse)
 }
 
 dependencies {
     implementation(project(":core"))
     implementation(project(":course"))
+    implementation(project(":main-ui"))
     implementation(project(":academy-course"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)

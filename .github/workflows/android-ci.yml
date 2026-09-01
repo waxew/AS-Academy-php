@@ -10,13 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout with Core submodule
+      - name: Checkout Core, MainUi and MainCourse
         uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Validate PHP course content
-        run: python3 tools/validate_course.py
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -27,6 +24,14 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+
+      - name: Package PHP content from MainCourse
+        run: gradle :app:syncPhpCourseFromMainCourse --stacktrace
+
+      - name: Validate effective PHP course content
+        env:
+          ACADEMY_COURSE_ROOT: app/build/generated/mainCourseAssets/course/php
+        run: python3 tools/validate_course.py
 
       - name: Build debug and unsigned release APKs
         run: gradle :app:assembleDebug :app:assembleRelease --stacktrace

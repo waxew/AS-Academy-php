@@ -1,48 +1,53 @@
 # AS Academy PHP
 
-اپ اندرویدی و Course Package فارسی برای **یادگیری PHP از صفر تا سطح تخصصی**.
+اپ Android اختصاصی PHP در معماری جدید AS Academy.
 
-## هدف
-این پروژه یک کتاب Markdown صرف نیست. کاربر باید داخل اپ درس‌ها را مرحله‌به‌مرحله بخواند، مثال کد ببیند، تمرین و Quiz انجام دهد، پروژه بسازد و Progress خود را نگه دارد.
+## معماری جدید
 
-## معماری
-زیرساخت عمومی از `AS-Academy-Core` به‌صورت Git submodule استفاده می‌شود. `MainActivity` فقط `AcademyCourseApp(courseId = "php")` را اجرا می‌کند؛ Navigation، UI، Progress، Search، Bookmark، Quiz/Exercise Engine، Database و Content Loader در Core باقی می‌مانند.
+این ریپو دیگر محل اصلی نگهداری محتوای آموزشی یا UI مشترک نیست و به یک **Course Host سبک** تبدیل می‌شود:
 
-## مسیر آموزشی فعلی
-- مبانی: PHP، نصب، Type، Operator، Condition، Loop، Array، Function
-- مقدماتی: HTTP، Form، Session، Upload، SQL، PDO، CRUD
-- پیشرفته: OOP، Composer/PSR، Exception، MVC، SOLID، Security، REST API
-- تخصصی: Laravel، Eloquent، Validation/Policy، Testing، Redis، Queue، Performance، Docker، CI/CD و Deployment
-
-## محتوای قابل اجرای اپ
-Course Package در مسیر استاندارد Android Assets قرار دارد:
-`app/src/main/assets/course/php`
-
-ساختار داخلی:
-- `manifest.json`
-- `levels.json`
-- `chapters.json`
-- `lessons/*.json`
-- `exercises/*.json`
-- `quizzes/*.json`
-- `projects/*.json`
-- `glossary/*.json`
-
-Core در زمان اجرا این فایل‌ها را با مسیر منطقی `course/php/...` بارگذاری می‌کند.
-
-## ساخت Android
-```bash
-git clone --recurse-submodules https://github.com/waxew/AS-Academy-php.git
-cd AS-Academy-php
+```text
+AS-Academy-MainCourse -> محتوای PHP
+          |
+          v
+AS-Academy-PHP -> Host / applicationId / version / PHP branding
+          |
+          v
+AS-Academy-MainUi -> UI/UX و Wiring مشترک
+          |
+          v
+AS-Academy-Core -> Engine / Room / Repository / Contracts
 ```
-اگر قبلاً clone شده:
-```bash
-git submodule update --init --recursive
-```
-سپس `:app:assembleDebug` یا Build از Android Studio اجرا شود.
+
+### AS-Academy-Core
+Database، Repository، Progress Engine، Quiz/Exercise/Search Engine، Content Contract و سرویس‌های زیرساختی مشترک.
+
+### AS-Academy-MainUi
+Home، Lesson Reader، Search UI، Bookmark، Progress، Quiz، Exercise، Project، Drawer/Profile، Settings، Theme و اتصال actionهای UI به Core.
+
+### AS-Academy-MainCourse
+Single Source of Truth تمام محتوای آموزشی. محتوای PHP در `courses/php/course` نگهداری می‌شود: Level، Chapter، Lesson، Exercise، Quiz، Project، Solution، Glossary و assets.
+
+### AS-Academy-PHP
+فقط applicationId، version، entry point، branding/capability اختصاصی PHP و packaging نهایی را نگه می‌دارد.
+
+## وضعیت Migration
+
+محتوای legacy فعلاً در `app/src/main/assets/course/php` وجود دارد تا Build فعلی نشکند. نسخه مرجع جدید PHP در `AS-Academy-MainCourse/courses/php/course` در حال انتقال است. بعد از تطبیق کامل و validation، duplicate legacy حذف می‌شود و build pipeline محتوای PHP را از MainCourse بسته‌بندی خواهد کرد.
+
+## سطوح اصلی
+- مبانی
+- مقدماتی
+- پیشرفته
+- تخصصی
+
+هدف دوره مرجع کامل PHP از صفر تا Production است؛ تعداد درس به‌تنهایی معیار نیست و هر Lesson باید واحد آموزشی واقعی با توضیح، مثال، نکته، خطای رایج و ارزیابی مناسب باشد.
 
 ## Package
 `com.asdevelopers.academy.php`
 
-## اصل توسعه
-هر قابلیت مشترک بین دوره‌ها باید در `AS-Academy-Core` پیاده‌سازی شود. این مخزن فقط منطق و محتوای اختصاصی PHP را نگه می‌دارد.
+## قانون توسعه
+- تغییر محتوای PHP -> `AS-Academy-MainCourse`
+- تغییر UI مشترک -> `AS-Academy-MainUi`
+- تغییر Engine/Database/Repository/Contract -> `AS-Academy-Core`
+- تغییر PHP-only host/branding/capability -> `AS-Academy-PHP`

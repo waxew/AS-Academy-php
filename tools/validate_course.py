@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 import json
+import os
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1] / "app" / "src" / "main" / "assets" / "course" / "php"
+REPO = Path(__file__).resolve().parents[1]
+ROOT = Path(os.environ.get("ACADEMY_COURSE_ROOT", REPO / "app" / "src" / "main" / "assets" / "course" / "php"))
+if not ROOT.is_absolute():
+    ROOT = REPO / ROOT
 errors = []
 
 
@@ -31,6 +35,10 @@ def unique_ids(items, label):
         seen.add(item_id)
     return seen
 
+if not ROOT.exists():
+    print(f"Course root does not exist: {ROOT}")
+    sys.exit(1)
+
 manifest = load_json(ROOT / "manifest.json") or {}
 levels = load_json(ROOT / "levels.json") or []
 chapters = load_json(ROOT / "chapters.json") or []
@@ -50,9 +58,9 @@ if manifest.get("courseId") != "php":
 level_ids = unique_ids(levels, "level")
 chapter_ids = unique_ids(chapters, "chapter")
 lesson_ids = unique_ids(lesson_docs, "lesson")
-exercise_ids = unique_ids(exercise_docs, "exercise")
-quiz_ids = unique_ids(quiz_docs, "quiz")
-project_ids = unique_ids(project_docs, "project")
+unique_ids(exercise_docs, "exercise")
+unique_ids(quiz_docs, "quiz")
+unique_ids(project_docs, "project")
 
 for chapter in chapters:
     if chapter.get("levelId") not in level_ids:
@@ -65,7 +73,7 @@ for lesson in lesson_docs:
     if not isinstance(blocks, list) or not blocks:
         fail(f"Lesson {lesson.get('id')} has no blocks")
 
-allowed_exercise_types = {"WRITE_CODE", "COMPLETE_CODE", "READ_AND_ANSWER", "BUILD_FEATURE", "FIX_CODE"}
+allowed_exercise_types = {"WRITE_CODE", "COMPLETE_CODE", "READ_AND_ANSWER", "BUILD_FEATURE", "FIX_CODE", "PREDICT_OUTPUT"}
 for exercise in exercise_docs:
     if exercise.get("lessonId") not in lesson_ids:
         fail(f"Exercise {exercise.get('id')} references missing lesson {exercise.get('lessonId')}")
@@ -79,14 +87,13 @@ for quiz in quiz_docs:
     if not isinstance(questions, list) or not questions:
         fail(f"Quiz {quiz.get('id')} has no questions")
         continue
-    question_ids = unique_ids(questions, f"question in {quiz.get('id')}")
+    unique_ids(questions, f"question in {quiz.get('id')}")
     for question in questions:
         answers = question.get("answers")
         if not isinstance(answers, list) or len(answers) < 2:
             fail(f"Question {question.get('id')} in {quiz.get('id')} needs at least 2 answers")
             continue
-        correct = [a for a in answers if a.get("isCorrect") is True]
-        if not correct:
+        if not any(a.get("isCorrect") is True for a in answers):
             fail(f"Question {question.get('id')} in {quiz.get('id')} has no correct answer")
 
 for project in project_docs:
@@ -107,7 +114,7 @@ for key, minimum in minimums.items():
     if counts[key] < minimum:
         fail(f"Course depth regression: {key}={counts[key]} < {minimum}")
 
-print("AS Academy PHP content inventory")
+print(f"AS Academy PHP content inventory: {ROOT}")
 for key, value in counts.items():
     print(f"- {key}: {value}")
 print(f"- version: {manifest.get('version', 'unknown')}")
